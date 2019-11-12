@@ -20,3 +20,43 @@
 .App-link {
   color: #09d3ac;
 }
+
+
+
+/*.heading{
+  float: left;
+  font-weight: bold;
+  font-size:10px;
+  color:gray;
+}*/
+table, td, th{
+  border:1px solid;
+}
+
+.heading{
+  float:left;
+  font-size:10px;
+  font-weight: bold;
+  color:gray;
+}
+
+.content{
+  clear:both;
+  float: left;  
+}
+
+#modal-body{
+  position:absolute;
+  width:100%;
+  min-height:100%;
+  
+  background-color:black;
+  opacity: 0.5;
+}
+
+
+#modal-content{
+  position: absolute;
+  top:50%;
+  left:50%;  
+}

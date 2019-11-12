@@ -1,6 +1,6 @@
 //export const stateSelector = (state: any) => ({ ...state });
 
-let initialState = { a: 1, status: "COMPLETED", title: "", body: "" };
+let initialState = { a: 1, loading: false, title: "", body: "" };
 interface Action {
 	type: string,
 	data?: any
@@ -12,13 +12,13 @@ const reducer = (state = initialState, action: Action) => {
 			finalState = { ...state, ...action.data };
 			break;
 		case "DONE":
-			finalState = { ...state, status: "COMPLETED" };
+			finalState = { ...state, loading: false };
 			break;
 		case "INPROGRESS":
-			finalState = { ...state, status: "LOADING..." };
+			finalState = { ...state, loading: true };
 			break;
 		case "ERROR":
-			finalState = { ...state, status: "No Valid response" };
+			finalState = { ...state, loading: false };
 			break;
 		default:
 			finalState = state;

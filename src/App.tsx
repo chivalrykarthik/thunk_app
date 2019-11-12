@@ -1,20 +1,31 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import { connect } from 'react-redux';
 import action from './action';
 //import { stateSelector } from './reducer';
+//import TableCmp from './TableCmp';
+import TableCmp from './table/TableCmp';
 import User from './User';
-function App(props: any) {
+import Modal from './Modal';
+interface IProps{
+	state:any
+}
+const App:React.FC<IProps> = (props)=>{
 	return (
 		<div className="App">
 			Title: {props.state.title}
 			<br />
 			Body: {props.state.body}
-			<br />
-			status: {props.state.status}
+			
+			
 			<hr />
 			<User />
+			<hr />
+			<TableCmp />
+			
+			
+			{props.state.loading ? <Modal /> :  null}
+			
 		</div>
 	);
 }
