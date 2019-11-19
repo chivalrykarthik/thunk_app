@@ -1,32 +1,33 @@
 import React from 'react';
 import './App.css';
 import {connect} from 'react-redux';
+import {
+	BrowserRouter as Router,
+	Switch,
+	Route
+} from 'react-router-dom';
 import action from './action';
 //import { stateSelector } from './reducer';
 //import TableCmp from './TableCmp';
-import TableCmp from './table/TableCmp';
-import User from './User';
-import Modal from './Modal';
+import Home from './Home';
+import UserList from './UserList';
 interface IProps{
 	state:any
 }
+
+
 const App:React.FC<IProps> = (props)=>{
 	return (
-		<div className="App">
-			Title: {props.state.title}
-			<br />
-			Body: {props.state.body}
-			
-			
-			<hr />
-			<User />
-			<hr />
-			<TableCmp />
-			
-			
-			{props.state.loading ? <Modal /> :  null}
-			
-		</div>
+		<Router>
+			<Switch>
+				<Route exact path="/">
+					<Home {...props} />
+				</Route>
+				<Route exact path="/users">
+					<UserList />
+				</Route>
+			</Switch>
+		</Router>
 	);
 }
 
