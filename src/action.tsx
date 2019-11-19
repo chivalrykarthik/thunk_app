@@ -1,26 +1,65 @@
 import axios from 'axios';
-
-const addUser = (data: any) => {
-	return axios({
-		method: 'post',
-		url: 'https://jsonplaceholder.typicode.com/posts',
-		data: data
-	});
-}
 const action = {
-	add: (data: any) => {
-		return async (dispatch: any, getState: any) => {
-			dispatch({ type: "INPROGRESS" });
-			try {
-				let response = await addUser(data);
-				dispatch({ type: "ADDUSER", data: response.data });
-				dispatch({ type: "DONE" });
-			} catch (e) {
-				console.log(e)
-				dispatch({ type: "ERROR" });
-			}
-		}
+add:(data:any)=>{
+	
+	return (dispatch:any,getState:any)=>{
+		dispatch({type:"INPROGRESS"});		
+		axios({
+		  method: 'post',		  
+		  url:'https://jsonplaceholder.typicode.com/posts',
+		  data: data
+		})
+		.then(function (response) {			
+			dispatch({type:"SHOWUSER",data:response.data});
+			dispatch({type:"DONE"});
+		})
+		.catch(function (error) {
+			console.log(error);
+		});
+		
+		
+		
 	}
+},
+sub:()=>{
+	return (dispatch:any,getState:any)=>{
+		dispatch({type:"INPROGRESS"})
+		setTimeout(()=>{
+			let {a} = getState();
+			if(a<=0){
+				dispatch({type:"ERROR"});				
+			}else{				
+			dispatch({type:"SUB"});
+			dispatch({type:"DONE"});			
+			}
+		},1000)
+		
+		
+	}
+},
+showUser:(data:any)=>{
+	let useID = data[0];
+	let url = 'https://jsonplaceholder.typicode.com/posts/'
+	if(useID){
+		url+=useID;
+	}
+	return (dispatch:any,getState:any)=>{
+		dispatch({type:"INPROGRESS"});		
+		axios({
+		  method: 'get',		  
+		  url:url,
+		  data: data
+		})
+		.then(function (response) {			
+			dispatch({type:"SHOWUSER",data:response.data});
+			dispatch({type:"DONE"});
+		})
+		.catch(function (error) {
+			console.log(error);
+		});	
+		
+	}
+}
 };
 
 

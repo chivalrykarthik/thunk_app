@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 import action from './action';
 //import { stateSelector } from './reducer';
 //import TableCmp from './TableCmp';
@@ -30,16 +30,17 @@ const App:React.FC<IProps> = (props)=>{
 	);
 }
 
-const mapStateToProps = (state: any) => {
-	return {
-		state: state
+const mapStateToProps = (state:any)=>{
+	return{
+		state:state
 	}
 };
 
-const mapDispatchToProps = (dispatch: any) => {
+const mapDispatchToProps = (dispatch:any)=>{
 	return {
-		add: (state: any) => dispatch(action.add(state))
+		add:(state:any)=>dispatch(action.add(state)),
+		sub:()=>dispatch(action.sub())
 	}
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps,mapDispatchToProps)(App);
