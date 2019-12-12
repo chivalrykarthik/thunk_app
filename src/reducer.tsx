@@ -1,7 +1,7 @@
 export const stateSelector = (state:any) =>({...state});
 
 
-let initialState = { a: 1, loading: false, title: "", body: "" };
+let initialState = { a: 1, loading: false, title: "", body: "",message:"Add" };
 interface Action {
 	type: string,
 	data?: any
@@ -31,7 +31,9 @@ const reducer = (state=initialState,action:Action)=>{
 		case "ERROR":
 			finalState = { ...state, loading: false };
 			break;
-
+		case "SUC":
+			finalState = {...state,message:action}
+			break;
 		default:
 			finalState = state;
 		break;
